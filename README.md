@@ -1,6 +1,6 @@
 ## Nats Jetstream example
 
-Nats Jetstream pubsub expamples.
+Nats Jetstream pubsub examples.
 
 - Nats Simple pub - async sub
 - Nats Simple pub - async queue sub
