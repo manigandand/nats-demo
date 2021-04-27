@@ -25,7 +25,7 @@ func main() {
 	subj := *substr
 
 	// -------------------------------------------------------------------------
-	// steaming no loadbalncing
+	// steaming loadbalncing
 	// -------------------------------------------------------------------------
 	// Simple Async Queue Subscriber
 	asyncQSub, err := nc.QueueSubscribe(subj, *chn, func(m *nats.Msg) {

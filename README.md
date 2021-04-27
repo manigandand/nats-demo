@@ -5,7 +5,7 @@ Nats Jetstream pubsub examples.
 - Nats Simple pub - async sub
 - Nats Simple pub - async queue sub
 
-# TODO
+## TODO
 
 evaluate, configure against
 

@@ -1,3 +1,7 @@
-cmd/natssub/natssub
-cmd/natsqsub/natsqsub
-cmd/natsprod/natsprod
+vendor
+cmd/nats-server/natssub/natssub
+cmd/nats-server/natsqsub/natsqsub
+cmd/nats-server/natsprod/natsprod
+
+cmd/nats-jetstream/prod/prod
+cmd/nats-jetstream/qsub/qsub
