@@ -38,7 +38,7 @@ func main() {
 			&nats.StreamConfig{
 				Name: StreamName,
 				Subjects: []string{
-					StreamName + ".*",
+					StreamName + ".>",
 				},
 				Retention:    nats.WorkQueuePolicy,
 				MaxConsumers: 5,

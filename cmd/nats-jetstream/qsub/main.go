@@ -44,8 +44,8 @@ func main() {
 			MaxAckPending:  1000,
 			MaxDeliver:     2,
 			ReplayPolicy:   nats.ReplayInstantPolicy,
-			DeliverSubject: "events.*",
-			FilterSubject:  "events.*",
+			DeliverSubject: ConsumerName + "." + StreamName + ".processed",
+			FilterSubject:  StreamName + ".>",
 		})
 		log.Println("ConsumerInfo:", ci, "error", err)
 	}
@@ -53,8 +53,6 @@ func main() {
 
 	// topic
 	substr := flag.String("subj", "", "a string")
-	// channel
-	chn := flag.String("chn", "", "a string")
 	flag.Parse()
 	if *substr == "" {
 		log.Fatal("subject required")
@@ -65,7 +63,7 @@ func main() {
 	// steaming no loadbalncing
 	// -------------------------------------------------------------------------
 	// Simple Async Queue Subscriber
-	asyncQSub, err := natsJs.QueueSubscribe(subj, *chn, func(msg *nats.Msg) {
+	asyncQSub, err := natsJs.QueueSubscribe(subj, ConsumerName, func(msg *nats.Msg) {
 		log.Println("Msg>>>: ", string(msg.Data))
 		// msg.Nak()
 		if err := msg.Ack(); err != nil {
@@ -83,7 +81,7 @@ func main() {
 	if err != nil {
 		log.Fatal("async_queue_sub err: " + err.Error())
 	}
-	log.Printf("Listening on [%s], queue group [%s]\n", subj, *chn)
+	log.Printf("Listening on [%s], queue group [%s]\n", subj, ConsumerName)
 	if !asyncQSub.IsValid() {
 		log.Fatal("async_queue_sub closed")
 	}
